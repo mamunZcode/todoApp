@@ -10,20 +10,6 @@ class _ToDoHomeScreenState extends State<ToDoHomeScreen> {
   FireStoreService fireStoreService = FireStoreService();
   TextEditingController todoController = TextEditingController();
   List<Map<String, dynamic>> todoData = [];
-  // void saveData() async{
-  //   var collectionName;
-  //   await fireStoreService.addTodoData(collectionName, {
-  //     'collection': collectionName,
-  //     'todoName': controller.value.text
-  //   });
-  // }
-  // void setTodoData() async{
-  //   var docs = await fireStoreService.getAllTodos();
-  //   var addTodoData = docs.where((map) => map["doc_id"].contains("todo_data")).toList();
-  //   setState(() {
-  //     todoData = addTodoData.where((e) => e != null).toList();
-  //   });
-  // }
   ///create delete function
   void delete(String docId) async{
     await fireStoreService.deleteDocument('todos', docId);
@@ -45,9 +31,6 @@ class _ToDoHomeScreenState extends State<ToDoHomeScreen> {
       print("Todo is empty");
       return;
     }
-    // await fireStoreService.addTodoData(collectionName, {
-    //   'todoName': todoText,
-    // });
     await fireStoreService.addNewTodoData(collectionName, {
       'todoName': todoText,
       'CreateByMamun': DateTime.now().toIso8601String(),
