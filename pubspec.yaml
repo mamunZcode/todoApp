@@ -7,6 +7,7 @@ environment:
   sdk: '>=3.2.1 <4.0.0'
 
 dependencies:
+  lorem_ipsum: ^0.0.3
   firebase_core: ^2.15.1
   cloud_firestore: ^4.9.1
   firebase_auth: ^4.8.0
@@ -21,4 +22,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
+  assets:
+    - assets/
   uses-material-design: true
+

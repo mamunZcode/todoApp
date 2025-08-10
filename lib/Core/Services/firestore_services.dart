@@ -1,12 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'myDocument.dart';
-
-
-
 class FireStoreService {
   final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
-
   void listenToDocuments(String userId, Function(List<MyDocument>) callback) {
     _fireStore.collection(userId).snapshots().listen((snapshot) {
       print('object length' + snapshot.docChanges.length.toString());
@@ -19,13 +14,11 @@ class FireStoreService {
       callback(documents);
     });
   }
-
   // Add a document to a Firestore collection
   Future<void> addProfileData(
       String collectionName, Map<String, dynamic> data) async {
     await _fireStore.collection(collectionName).doc('profile_data').set(data);
   }
-
   Future<void> addPersonalData(
       String collectionName, Map<String, dynamic> data2) async {
     await _fireStore.collection(collectionName).doc('personal_data').set(data2);
@@ -45,18 +38,15 @@ class FireStoreService {
       return data;
     }).toList();
   }
-
   // Update a document in a Firestore collection
   Future<void> updateDocument(String collectionName, String documentId,
       Map<String, dynamic> data) async {
     await _fireStore.collection('todos').doc(documentId).update(data);
   }
-
   // Delete a document from a Firestore collection
   Future<void> deleteDocument(String collectionName, String documentId) async {
     await _fireStore.collection(collectionName).doc(documentId).delete();
   }
-
   // Retrieve a list of documents from a Firestore collection
   Future<List<Map<String, dynamic>>> getDocuments(String? collectionName) async {
     final QuerySnapshot snapshot =
@@ -69,14 +59,12 @@ class FireStoreService {
     }).toList();
     return documents;
   }
-
   Future<Object?> getProfileData(String uid) async {
     final DocumentSnapshot snapshot =
     await _fireStore.collection(uid).doc('profile_data').get();
 
     return snapshot.data();
   }
-
   Future<List<MyDocument>> refreshData(String userId) async {
     var docs = await getDocuments(userId);
     List<MyDocument> myDocs = [];

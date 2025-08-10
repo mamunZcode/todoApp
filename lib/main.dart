@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:to_do_app/Presentation/Screen/profile_screen.dart';
 import 'package:to_do_app/Presentation/Screen/todo_home_screen.dart';
 
 Future main() async {
@@ -15,6 +16,7 @@ Future main() async {
       )
     );
   }
+  await Firebase.initializeApp();
   runApp(const MainApp());
 }
 class MainApp extends StatelessWidget {
@@ -22,9 +24,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ToDoHomeScreen()
+      home: const ToDoHomeScreen(),
+      routes: {
+        ProfileScreen.id :(context) => const ProfileScreen()
+      },
     );
   }
 }
